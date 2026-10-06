@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f3eb">
+  <meta name="description" content="A playful, interactive 2D game-dev field guide from Community of Coders at VJTI. Explore the trail, learn the lingo, and find your next tutorial.">
+  <title>Community of Coders, VJTI — Game Dev Trail</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Press+Start+2P&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Community of Coders home">
+      <svg class="brand-mark" viewBox="0 0 120 120" aria-hidden="true">
+        <path d="M72 9C36 4 8 26 8 58s27 55 61 54C49 99 31 82 31 58 31 36 47 19 72 9Z"/>
+        <path d="M79 39c22 3 37 21 37 40s-17 35-44 40c18-13 27-29 27-42 0-16-8-30-20-38Z"/>
+        <path fill-rule="evenodd" d="M64 54c9 0 15 8 15 19s-6 20-15 20-15-8-15-20 6-19 15-19Zm0 7c-5 0-8 5-8 12s3 13 8 13 8-6 8-13-3-12-8-12Z"/>
+      </svg>
+      <span class="brand-name">Community <b>of Coders</b></span>
+      <span class="brand-campus">VJTI</span>
+    </a>
+    <nav class="top-nav" aria-label="Main navigation">
+      <a href="#play">The trail</a>
+      <a href="#field-notes">Field notes</a>
+      <a href="#resources">Good stuff</a>
+    </nav>
+    <a class="header-cta" href="#play">Start exploring <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> VJTI · COMMUNITY OF CODERS</p>
+        <h1 id="hero-title">Let’s make a<br><span>game.</span></h1>
+        <p class="hero-intro">A tiny playable field guide to the world behind your favorite games. Meet the concepts, learn the lingo, and leave with somewhere to start.</p>
+        <a class="hero-link" href="#play">Take a walk <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-sun"></div>
+        <div class="art-cloud cloud-one"></div>
+        <div class="art-cloud cloud-two"></div>
+        <div class="art-hill hill-back"></div>
+        <div class="art-hill hill-front"></div>
+        <div class="art-platform"><span></span></div>
+        <div class="art-player"><i></i></div>
+        <span class="art-spark spark-one">✳</span>
+        <span class="art-spark spark-two">✦</span>
+        <span class="art-label">PLAYER 01<br>READY WHEN YOU ARE</span>
+      </div>
+      <div class="hero-stamp" aria-hidden="true">NO EXPERIENCE<br>REQUIRED <span>✳</span></div>
+    </section>
+
+    <section class="trail-section" id="play" aria-labelledby="trail-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">01 / THE INTERACTIVE BIT</p>
+          <h2 id="trail-title">Take the scenic route.</h2>
+        </div>
+        <p class="section-note">Walk the trail. Stop at a sign.<br>Pick up a new idea.</p>
+      </div>
+      <div class="game-shell">
+        <div class="game-topline">
+          <div class="game-label"><span class="live-dot"></span> THE STARTER TRAIL <span class="game-label-muted">· WORLD 01</span></div>
+          <div id="hud" aria-live="polite">0 / 7 stops <span>·</span> 0 coins</div>
+        </div>
+        <nav id="nav" aria-label="Jump to a trail stop"></nav>
+        <canvas id="game" tabindex="0" aria-label="Playable 2D platformer. Move with arrow keys or A and D, jump with W, up arrow, or space, and press E at signs to read a lesson."></canvas>
+        <div class="game-bottomline">
+          <p class="help"><span>← →</span> or <span>A D</span> move <i>·</i> <span>↑</span> <span>W</span> or <span>SPACE</span> jump <i>·</i> <span>E</span> read</p>
+          <p class="game-hint">PSST... THERE ARE COINS UP THERE <span aria-hidden="true">↗</span></p>
+        </div>
+        <div id="touch" aria-label="Touch controls">
+          <div><button type="button" data-k="left" aria-label="Move left">←</button><button type="button" data-k="right" aria-label="Move right">→</button></div>
+          <div><button type="button" data-k="act">READ</button><button type="button" data-k="jump">JUMP</button></div>
+        </div>
+      </div>
+      <p class="trail-caption"><span>TIP #001</span> You can also pick any stop above to jump straight to it. No wrong turns here.</p>
+    </section>
+
+    <section class="notes-section" id="field-notes" aria-labelledby="notes-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">02 / YOUR POCKET FIELD GUIDE</p>
+          <h2 id="notes-title">Curious? Go exploring.</h2>
+        </div>
+        <p class="section-note">Seven bite-sized stops.<br>One very big world.</p>
+      </div>
+      <div id="lesson-grid" class="lesson-grid"></div>
+    </section>
+
+    <section class="resources-section" id="resources" aria-labelledby="resources-title">
+      <div class="resources-heading">
+        <div>
+          <p class="eyebrow">03 / NEXT STEPS, NO PRESSURE</p>
+          <h2 id="resources-title">Good stuff for the<br>road ahead<span>.</span></h2>
+          <p class="resources-intro">When you're ready to go deeper, these are a few good places to begin. Bookmark whatever feels right.</p>
+        </div>
+        <span class="resources-doodle" aria-hidden="true">↘</span>
+      </div>
+      <div class="resource-grid">
+        <article class="resource-card resource-tutorials">
+          <span class="resource-number">01 — WATCH &amp; LEARN</span>
+          <div class="resource-icon" aria-hidden="true">▶</div>
+          <h3>Learn from people<br>who've made things.</h3>
+          <p>Friendly tutorials to take you from curious to your very first playable thing.</p>
+          <a href="https://youtu.be/LOhfqjmasi0?si=qrF3RUHjI8gPGVI4" target="_blank" rel="noopener noreferrer">Start with a 2D game tutorial <span aria-hidden="true">↗</span></a>
+          <a href="https://school.gdquest.com/courses/learn_2d_gamedev_godot_4/learn_gdscript/learn_gdscript_app" target="_blank" rel="noopener noreferrer">Get comfy with GDScript <span aria-hidden="true">↗</span></a>
+          <a href="https://www.youtube.com/watch?v=QU1pPzEGrqw&t=16814s" target="_blank" rel="noopener noreferrer">Make a game with Pygame <span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="resource-card resource-games">
+          <span class="resource-number">02 — PEEK UNDER THE HOOD</span>
+          <div class="resource-icon" aria-hidden="true">⌘</div>
+          <h3>Real games.<br>Real source code.</h3>
+          <p>See how the ideas on this trail show up in games made by our crew.</p>
+          <a href="https://github.com/AvanishSalunke/TRAIN-YOUR-FOES" target="_blank" rel="noopener noreferrer">Train Your Foes (TYF) <span aria-hidden="true">↗</span></a>
+          <a href="https://github.com/pinkCastle2204/sentient-shadow" target="_blank" rel="noopener noreferrer">Sentient Shadow (SS) <span aria-hidden="true">↗</span></a>
+          <a href="https://github.com/Once-1296/CoC_Orientation_Game" target="_blank" rel="noopener noreferrer">CoC Orientation Game <span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="resource-card resource-tools">
+          <span class="resource-number">03 — MAKE YOUR OWN</span>
+          <div class="resource-icon" aria-hidden="true">✳</div>
+          <h3>Make pixels.<br>Find your tools.</h3>
+          <p>You don't need to make everything from scratch. Start small, borrow smart.</p>
+          <a href="https://godotengine.org" target="_blank" rel="noopener noreferrer">Meet the Godot engine <span aria-hidden="true">↗</span></a>
+          <a href="https://itch.io/game-assets" target="_blank" rel="noopener noreferrer">Browse free &amp; paid game assets <span aria-hidden="true">↗</span></a>
+          <a href="https://resprite.fengeon.com/" target="_blank" rel="noopener noreferrer">Make your own pixel art <span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="finish-section" aria-labelledby="finish-title">
+      <div class="finish-decoration" aria-hidden="true">✳</div>
+      <p class="eyebrow">YOU MADE IT TO THE END</p>
+      <h2 id="finish-title">Now go make<br>something <span>weird.</span></h2>
+      <p>Got the basics? Take the bigger guide with you and keep following the curiosity.</p>
+      <a class="finish-button" href="https://docs.google.com/document/d/1uzx2ziFByUeUIh7t-817FX2HyeTRX6TMHMqvsxT_lAI/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Open the in-depth guide <span aria-hidden="true">↗</span></a>
+      <span class="finish-footnote">A FIELD GUIDE FOR FUTURE GAME MAKERS</span>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="#" aria-label="Community of Coders home">
+      <svg class="brand-mark" viewBox="0 0 120 120" aria-hidden="true">
+        <path d="M72 9C36 4 8 26 8 58s27 55 61 54C49 99 31 82 31 58 31 36 47 19 72 9Z"/>
+        <path d="M79 39c22 3 37 21 37 40s-17 35-44 40c18-13 27-29 27-42 0-16-8-30-20-38Z"/>
+        <path fill-rule="evenodd" d="M64 54c9 0 15 8 15 19s-6 20-15 20-15-8-15-20 6-19 15-19Zm0 7c-5 0-8 5-8 12s3 13 8 13 8-6 8-13-3-12-8-12Z"/>
+      </svg>
+      <span class="brand-name">Community <b>of Coders</b></span>
+      <span class="brand-campus">VJTI</span>
+    </a>
+    <p>A VJTI Community of Coders side quest. Best explored one jump at a time.</p>
+    <a href="#play">Back to the beginning ↑</a>
+  </footer>
+
+  <div id="panel" hidden role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+    <div id="card"><button id="close" type="button" aria-label="Close lesson">✕</button><div id="content"></div></div>
+  </div>
+  <script src="game.js?v=2"></script>
+</body>
+</html>
