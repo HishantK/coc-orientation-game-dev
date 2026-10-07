@@ -70,11 +70,13 @@ const H = 500;
 const GROUND = 420;
 const WORLD = 6200;
 const keys = Object.create(null);
+const touchPointers = new Map();
 const seen = new Set();
 let coins = 0;
 let panelOpen = false;
 let near = null;
 let tick = 0;
+let jumpRequested = false;
 let previousFocus = canvas;
 
 canvas.width = W;
@@ -165,18 +167,40 @@ addEventListener('keyup', (event) => {
 
 addEventListener('blur', () => {
   Object.keys(keys).forEach((key) => { keys[key] = false; });
+  clearTouchPointers();
 });
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) clearTouchPointers();
+});
+
+function releaseTouchPointer(event) {
+  const key = touchPointers.get(event.pointerId);
+  if (!key) return;
+  touchPointers.delete(event.pointerId);
+  keys[key] = Array.from(touchPointers.values()).includes(key);
+}
+
+function clearTouchPointers() {
+  touchPointers.clear();
+  ['left', 'right', 'jump'].forEach((key) => { keys[key] = false; });
+  jumpRequested = false;
+}
 
 document.querySelectorAll('#touch button').forEach((button) => {
   const key = button.dataset.k;
-  const release = () => { keys[key] = false; };
   button.addEventListener('pointerdown', (event) => {
     event.preventDefault();
+    touchPointers.set(event.pointerId, key);
     keys[key] = true;
+    if (key === 'jump') jumpRequested = true;
     if (key === 'act') interact();
   });
-  ['pointerup', 'pointerleave', 'pointercancel'].forEach((name) => button.addEventListener(name, release));
+  button.addEventListener('click', (event) => {
+    if (key === 'act' && event.detail === 0) interact();
+  });
 });
+addEventListener('pointerup', releaseTouchPointer);
+addEventListener('pointercancel', releaseTouchPointer);
 
 const trailNav = document.getElementById('nav');
 STATIONS.forEach((station, index) => {
@@ -218,9 +242,10 @@ function update() {
   const horizontal = Number(Boolean(movingRight)) - Number(Boolean(movingLeft));
   player.vx = horizontal * 4.5;
   if (horizontal) player.facing = horizontal;
-  if ((keys.arrowup || keys.w || keys[' '] || keys.jump) && player.onGround) {
+  if ((keys.arrowup || keys.w || keys[' '] || keys.jump || jumpRequested) && player.onGround) {
     player.vy = -13.5;
     player.onGround = false;
+    jumpRequested = false;
   }
   player.vy = Math.min(player.vy + 0.58, 15);
   player.x = Math.max(0, Math.min(WORLD - player.w, player.x + player.vx));
