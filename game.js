@@ -126,7 +126,7 @@ function openLesson(station) {
   panelOpen = true;
   previousFocus = document.activeElement;
   seen.add(station);
-  content.innerHTML = `<p class="modal-eyebrow">${station.tag}</p><h2 id="dialog-title">${station.icon} ${station.title}</h2>${station.body}`;
+  content.innerHTML = `<p class="modal-eyebrow">${station.tag}</p><h2 id="dialog-title">${station.icon} ${station.title}</h2><p class="modal-hint">Press <kbd>Esc</kbd> to close</p>${station.body}`;
   panel.hidden = false;
   document.getElementById('close').focus();
   updateHud();
@@ -151,7 +151,8 @@ panel.addEventListener('click', (event) => {
 
 addEventListener('keydown', (event) => {
   const key = event.key.toLowerCase();
-  if (key === 'escape') {
+  if (key === 'escape' && panelOpen) {
+    event.preventDefault();
     closeLesson();
     return;
   }

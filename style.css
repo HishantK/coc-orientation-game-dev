@@ -536,6 +536,8 @@ main { overflow: hidden; }
 }
 .modal-eyebrow { margin: 0 40px 12px 0; color: var(--cyan); font: 8px/1.8 var(--pixel); }
 #card h2 { margin: 0 34px 19px 0; color: var(--yellow); font: 600 28px/1.2 var(--display); letter-spacing: -.04em; }
+.modal-hint { margin: -10px 0 18px; color: #a8a7bf !important; font-size: 11px !important; }
+.modal-hint kbd { padding: 3px 6px; border: 1px solid #555371; border-radius: 2px; background: #25253b; color: var(--cyan); font: 10px var(--mono); }
 #card p, #card li { color: #c7c6d9; font-size: 14px; line-height: 1.75; }
 #card ul { padding-left: 20px; }
 #card li { margin: 7px 0; }
